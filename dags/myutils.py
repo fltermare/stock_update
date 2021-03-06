@@ -81,3 +81,18 @@ def insert_new_data(stock_code, df, config):
     # close database connection
     cursor.close()
     conn.close()
+
+
+# def unpause_airflow_dag(dag_ids):
+#     print(dag_ids)
+#     import time
+#     time.sleep(5)
+
+#     # unpause airflow dag
+#     airflow_webserver_url = "http://airflow_webserver:8080"
+#     for dag_id in dag_ids:
+#         unpause_url = "{airflow_webserver_url}/api/experimental/dags/{dag_id}/paused/false".format(airflow_webserver_url=airflow_webserver_url, dag_id=dag_id)
+#         a = requests.get(unpause_url)
+#         print(a)
+
+#     print("[Unpaused All DAGs]")
