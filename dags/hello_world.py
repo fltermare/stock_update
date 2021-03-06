@@ -13,7 +13,7 @@ from setting import Setting
 default_args = {
     "owner": "Albert",
     "depends_on_past": False,
-    "start_date": datetime(2020, 11, 20),
+    "start_date": datetime.today() - timedelta(days=3),
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 1,
@@ -109,8 +109,11 @@ config = Setting()
 # schedule = "0 */12 * * *"
 schedule = "0 1 * * *"
 
+dags = []
 for stock_code in config.stock_code_list:
     dag_id = f"Dynamic_DAG_{stock_code}"
+    dags.append(dag_id)
     globals()[dag_id] = create_dag(dag_id, schedule, default_args, stock_code, config)
 
+# unpause_airflow_dag(dags)
 # docker-compose -f docker-compose-CeleryExecutor.yml up --scale worker=3
